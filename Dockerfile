@@ -1,2 +1,7 @@
-FROM image-registry.openshift-image-registry.svc:5000/openshift/postgresql:latest
-COPY init.sql /opt/app-root/src/postgresql-start/
+FROM postgres:16-alpine
+
+# Este volumen guarda los datos persistentes
+VOLUME ["/var/lib/postgresql/data"]
+
+# Puerto por donde se conecta PostgreSQL
+EXPOSE 5432

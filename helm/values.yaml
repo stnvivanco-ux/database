@@ -3,23 +3,33 @@ namespace: stnvivanco92-dev
 app:
   name: database
   role: database
-  image: savivancofi/database
-  tag: v1              # primera versión de tu imagen de DB
+  image: image-registry.openshift-image-registry.svc:5000/openshift/postgresql
+  tag: latest
   replicas: 1
   containerPort: 5432
   servicePort: 5432
-  createRoute: false   # la base de datos no se expone hacia afuera del cluster
+  createRoute: false
 
 env:
-  - name: POSTGRES_DB
+  - name: POSTGRESQL_DATABASE
     value: "retodb"
-  - name: POSTGRES_USER
+  - name: POSTGRESQL_USER
     value: "reto_user"
-  - name: POSTGRES_PASSWORD
+  - name: POSTGRESQL_PASSWORD
     value: "reto_pass"
+  - name: PGDATA
+    value: "/tmp/pgdata"
 
 pvc:
   enabled: false
   storageClassName: ""
   storageSize: ""
   mountPath: ""
+
+volumeMounts:
+  - name: temp-data
+    mountPath: /tmp
+
+volumes:
+  - name: temp-data
+    emptyDir: {}

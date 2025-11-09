@@ -19,7 +19,7 @@ env:
     value: "reto_pass"
 
 pvc:
-  enabled: true
-  storageClassName: gp3-csi   # si no sabes el storageClass, deja esto por ahora o usa el que ya usaste antes
-  storageSize: 1Gi
-  mountPath: /var/lib/postgresql/data
+  enabled: false
+  storageClassName: ""
+  storageSize: ""
+  mountPath: ""

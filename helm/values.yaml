@@ -4,7 +4,7 @@ app:
   name: database
   role: database
   image: savivancofi/database
-  tag: v1
+  tag: v3
   replicas: 1
   containerPort: 5432
   servicePort: 5432

@@ -23,10 +23,10 @@ jobs:
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         run: |
           echo "${DOCKERHUB_TOKEN}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
-
-      - name: Build and push Docker image
+      
+      - name: Build and push Docker image (no cache)
         run: |
-          docker build -t savivancofi/database:${{ env.TAG }} .
+          docker build --no-cache -t savivancofi/database:${{ env.TAG }} .
           docker push savivancofi/database:${{ env.TAG }}
 
       - name: Install OC CLI

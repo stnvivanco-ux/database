@@ -1,0 +1,25 @@
+namespace: stnvivanco92-dev
+
+app:
+  name: database
+  role: database
+  image: savivancofi/database
+  tag: v1              # primera versión de tu imagen de DB
+  replicas: 1
+  containerPort: 5432
+  servicePort: 5432
+  createRoute: false   # la base de datos no se expone hacia afuera del cluster
+
+env:
+  - name: POSTGRES_DB
+    value: "retodb"
+  - name: POSTGRES_USER
+    value: "reto_user"
+  - name: POSTGRES_PASSWORD
+    value: "reto_pass"
+
+pvc:
+  enabled: true
+  storageClassName: gp3-csi   # si no sabes el storageClass, deja esto por ahora o usa el que ya usaste antes
+  storageSize: 1Gi
+  mountPath: /var/lib/postgresql/data

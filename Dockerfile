@@ -1,7 +1,7 @@
 FROM postgres:16-alpine
 
-# Este volumen guarda los datos persistentes
-VOLUME ["/var/lib/postgresql/data"]
+# Copiamos el script SQL para inicializar la base
+COPY init.sql /docker-entrypoint-initdb.d/
 
-# Puerto por donde se conecta PostgreSQL
+# Exponemos el puerto de PostgreSQL
 EXPOSE 5432
